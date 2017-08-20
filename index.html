@@ -1,18 +1,16 @@
 <html>
 <body>
-Hello browser cam
-<video autoplay></video>
+<div style="background-size:contain;background-image:url('New-take3-logo.png');width:25vw;height:25vw"></div>
+<video autoplay style="width:100vw;height:100vh;position:absolute;top:0;left:0"></video>
 
 <script>
   var errorCallback = function(e) {
     console.log('Reeeejected!', e);
   };
-
   // Not showing vendor prefixes.
   navigator.getUserMedia({video: true, audio: true}, function(localMediaStream) {
     var video = document.querySelector('video');
     video.src = window.URL.createObjectURL(localMediaStream);
-
     // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
     // See crbug.com/110938.
     video.onloadedmetadata = function(e) {
