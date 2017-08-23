@@ -1,23 +1,25 @@
 <html>
-<body>
-<div style="background-size:contain;background-image:url('New-take3-logo.png');width:35vw;height:37.5vw"></div>
-<video autoplay style="width:100vw;height:100vh;position:absolute;top:0;left:0"></video>
+    <body>
+        <div style="background-size:contain;background-image:url('New-take3-logo.png');width:35vw;height:37.5vw"></div>
+        <video autoplay style="width:100vw;height:100vh;position:absolute;top:0;left:0"></video>
+        <script>
 
-<script>
-navigator.getUserMedia  = navigator.getUserMedia ||
-                          navigator.webkitGetUserMedia ||
-                          navigator.mozGetUserMedia ||
-                          navigator.msGetUserMedia;
-
-var video = document.querySelector('video');
-
-if (navigator.getUserMedia) {
-  navigator.getUserMedia({audio: true, video: true}, function(stream) {
-    video.src = window.URL.createObjectURL(stream);
-  });
-} else {
-  video.src = 'somevideo.webm'; // fallback.
-}
-</script>
-</body>
+            var errorCallback = function(e) {
+                console.log('Reeeejected!', e);
+            };
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+            var video = document.querySelector('video');
+            if (navigator.getUserMedia) {
+                navigator.getUserMedia({
+                    audio: true,
+                    video: true
+                }, function(stream) {
+                    video.src = window.URL.createObjectURL(stream);
+                }, errorCallback);
+            } else {
+                video.src = 'somevideo.webm';
+                // fallback.
+            }
+        </script>
+    </body>
 </html>
